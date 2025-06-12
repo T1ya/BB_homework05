@@ -21,7 +21,7 @@ public class BlkQueueImpl<T> implements BlkQueue<T> {
     public void push(T message) {
         mutex.lock();
         try {
-            while (queue.size() == maxSize) {
+            while (queue.size() >= maxSize) {
                 try {
                     pushCondition.await();
                 } catch (InterruptedException e) {
